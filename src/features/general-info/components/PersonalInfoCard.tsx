@@ -7,26 +7,26 @@ type PersonalInfoCardProps = {
 
 const PersonalInfoCard = ({ data }: PersonalInfoCardProps) => {
   return (
-    <Card title="Información Personal" bordered={false} size="small">
-      <Descriptions column={2} bordered size="small">
-        <Descriptions.Item label="Nombre completo" span={2}>
+    <Card title="Datos Personales" bordered={false} size="small">
+      <Descriptions column={3} bordered size="small">
+        <Descriptions.Item label="Nombre completo" span={3}>
           {data.nombreCompleto}
         </Descriptions.Item>
         <Descriptions.Item label="Edad">{data.edad} años</Descriptions.Item>
         <Descriptions.Item label="Sexo">
           {data.sexo === 'M' ? 'Masculino' : data.sexo === 'F' ? 'Femenino' : 'Otro'}
         </Descriptions.Item>
-        <Descriptions.Item label="CURP" span={2}>
+        <Descriptions.Item label="CURP">
           {data.curp}
         </Descriptions.Item>
-        <Descriptions.Item label="Teléfono celular">{data.telefonoCelular}</Descriptions.Item>
+        <Descriptions.Item label="Teléfono celular" span={2}>{data.telefonoCelular}</Descriptions.Item>
         <Descriptions.Item label="Teléfono secundario">
           {data.telefonoSecundario || 'No registrado'}
         </Descriptions.Item>
-        <Descriptions.Item label="Correo electrónico" span={2}>
+        <Descriptions.Item label="Correo electrónico" span={3}>
           {data.correoElectronico}
         </Descriptions.Item>
-        <Descriptions.Item label="Domicilio" span={2}>
+        <Descriptions.Item label="Domicilio" span={3}>
           {data.domicilio}
         </Descriptions.Item>
       </Descriptions>

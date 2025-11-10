@@ -1,15 +1,31 @@
+import { useEffect } from 'react';
 import { Space } from 'antd';
 import PageContainer from '@/shared/components/Layout/PageContainer';
-import PageHeader from '@/shared/components/Layout/PageHeader';
 import PageSkeleton from '@/shared/components/Feedback/PageSkeleton';
 import ErrorState from '@/shared/components/Feedback/ErrorState';
 import { useGeneralInfo } from '../hooks/useGeneralInfo';
+import { useAccountStore } from '@/app/store/account.store';
 import PersonalInfoCard from '../components/PersonalInfoCard';
 import AdicionalesTable from '../components/AdicionalesTable';
 import BeneficiariosTable from '../components/BeneficiariosTable';
 
 const GeneralInfoPage = () => {
   const { data, isLoading, error, refetch } = useGeneralInfo();
+  const { setAccount } = useAccountStore();
+
+  // Inicializar contexto de cuenta cuando se carga la data
+  useEffect(() => {
+    if (data) {
+      setAccount({
+        accountNumber: '4152-3456-7890-1234',
+        status: 'activa',
+        clientName: data.nombreCompleto,
+        lastContact: '10/Nov/2025 14:30',
+        phone: data.telefonoCelular,
+        clientSince: 'Ene/2020',
+      });
+    }
+  }, [data, setAccount]);
 
   if (isLoading) {
     return <PageSkeleton />;
@@ -25,10 +41,9 @@ const GeneralInfoPage = () => {
 
   return (
     <PageContainer>
-      <PageHeader title="Información General" />
-      <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+      <Space direction="vertical" size="small" style={{ display: 'flex' }}>
         <PersonalInfoCard data={data} />
-        <Space direction="horizontal" size="middle" style={{ display: 'flex' }}>
+        <Space direction="horizontal" size="small" style={{ display: 'flex' }}>
           <AdicionalesTable data={data.adicionales} />
           <BeneficiariosTable data={data.beneficiarios} />
         </Space>
