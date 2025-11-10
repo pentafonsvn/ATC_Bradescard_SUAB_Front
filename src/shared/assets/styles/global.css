@@ -1,0 +1,18 @@
+/* Resets & helpers */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; font-family: Roboto, Open Sans, sans-serif; background: #f5f6f8; }
+a { color: inherit; text-decoration: none; }
+
+:root {
+  --page-padding: 16px;
+}
+
+.page-container { padding: var(--page-padding); }
+
+/* Optimización para pantallas pequeñas (1024x768 y menores) */
+@media (max-width: 1024px) {
+  :root {
+    --page-padding: 8px;
+  }
+}
