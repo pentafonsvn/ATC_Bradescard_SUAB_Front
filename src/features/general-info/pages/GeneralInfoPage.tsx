@@ -5,6 +5,7 @@ import PageSkeleton from '@/shared/components/Feedback/PageSkeleton';
 import ErrorState from '@/shared/components/Feedback/ErrorState';
 import { useGeneralInfo } from '../hooks/useGeneralInfo';
 import { useAccountStore } from '@/app/store/account.store';
+import { formatDate } from '@/core/utils/dateFormat';
 import PersonalInfoCard from '../components/PersonalInfoCard';
 import AdicionalesTable from '../components/AdicionalesTable';
 import BeneficiariosTable from '../components/BeneficiariosTable';
@@ -17,12 +18,12 @@ const GeneralInfoPage = () => {
   useEffect(() => {
     if (data) {
       setAccount({
-        accountNumber: '4152-3456-7890-1234',
-        status: 'activa',
+        accountNumber: data.numeroCuenta,
+        status: data.estatusCuenta,
         clientName: data.nombreCompleto,
-        lastContact: '10/Nov/2025 14:30',
+        lastContact: formatDate(data.fechaUltimoContacto, 'dateTime'),
         phone: data.telefonoCelular,
-        clientSince: 'Ene/2020',
+        clientSince: formatDate(data.clienteDesde, 'short'),
       });
     }
   }, [data, setAccount]);

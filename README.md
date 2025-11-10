@@ -69,6 +69,10 @@ Reglas:
 2) Instala dependencias: `pnpm install`.
 3) Arranca: `pnpm dev`.
 
+## Layout optimizado para 1024x768
+- **Sin sidebar**: Navegación mediante tabs horizontales
+- **Header contextual**: Info crítica de cuenta siempre visible (sticky)
+
 Más detalles en:
 - README.screens.md
 - README.uiux.md
