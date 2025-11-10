@@ -1,4 +1,4 @@
-# Bradesco Consórcios - Frontend
+# Pantalla Unica
 
 Proyecto base enterprise para banca/contact center.
 
@@ -12,11 +12,11 @@ Proyecto base enterprise para banca/contact center.
 - Zod, React Hook Form, clsx
 
 ## Scripts
-- npm run dev
-- npm run build
-- npm run preview
-- npm run lint
-- npm run format
+- pnpm dev
+- pnpm build
+- pnpm preview
+- pnpm lint
+- pnpm format
 
 ## Estructura (feature-first)
 ```
@@ -66,8 +66,8 @@ Reglas:
 
 ## Inicio rápido
 1) Copia `.env.example` a `.env` y ajusta VITE_API_URL.
-2) Instala dependencias: `npm i`.
-3) Arranca: `npm run dev`.
+2) Instala dependencias: `pnpm install`.
+3) Arranca: `pnpm dev`.
 
 Más detalles en:
 - README.screens.md
