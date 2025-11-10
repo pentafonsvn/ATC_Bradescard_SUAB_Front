@@ -26,7 +26,7 @@ export const AppRouter = () => {
                 }
               />
             ))}
-            <Route index element={<Navigate to="/balances" replace />} />
+            <Route index element={<Navigate to="/general-info" replace />} />
           </Route>
         </Routes>
       </Suspense>

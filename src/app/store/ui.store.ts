@@ -1,11 +1,7 @@
 import { create } from 'zustand';
 
 type UIState = {
-  sidebarCollapsed: boolean;
-  toggleSidebar: () => void;
+  // Futuro: agregar estados de UI como modals, drawers, notifications, etc.
 };
 
-export const useUIStore = create<UIState>((set, get) => ({
-  sidebarCollapsed: false,
-  toggleSidebar: () => set({ sidebarCollapsed: !get().sidebarCollapsed })
-}));
+export const useUIStore = create<UIState>(() => ({}));
