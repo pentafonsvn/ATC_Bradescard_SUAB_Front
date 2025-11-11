@@ -1,7 +1,5 @@
-import { Space, Tag, Button, Typography, Divider, Card } from 'antd';
+import { Space, Button, Typography, Divider, Card, Switch, Popconfirm } from 'antd';
 import {
-  LockOutlined,
-  UnlockOutlined,
   FolderOutlined,
   PhoneOutlined,
   ClockCircleOutlined,
@@ -56,14 +54,39 @@ const ContextualHeader = () => {
       }}
       bodyStyle={{ padding: '12px 16px' }}
     >
+
+
       {/* Primera línea: Info crítica */}
       <Space size="middle" split={<Divider type="vertical" />} style={{ width: '100%', marginBottom: 8 }}>
         <Space size="small">
           <Text strong style={{ fontSize: 13 }}>Cuenta:</Text>
           <Text code style={{ fontSize: 13 }}>{accountNumber}</Text>
-          <Tag color={statusInfo.color} style={{ margin: 0, fontSize: 12 }}>
-            {statusInfo.label}
-          </Tag>
+          
+          <Space size={6} style={{ 
+            padding: '2px 8px', 
+            borderRadius: 4, 
+            background: statusInfo.color === 'success' ? '#f6ffed' : statusInfo.color === 'error' ? '#fff2f0' : statusInfo.color === 'warning' ? '#fffbe6' : '#fafafa',
+            border: `1px solid ${statusInfo.color === 'success' ? '#b7eb8f' : statusInfo.color === 'error' ? '#ffccc7' : statusInfo.color === 'warning' ? '#ffe58f' : '#d9d9d9'}`
+          }}>
+            <Text style={{ fontSize: 12, fontWeight: 500 }}>{statusInfo.label}</Text>
+          </Space>
+          <Popconfirm
+            title={status === 'activa' ? '¿Desactivar cuenta?' : '¿Activar cuenta?'}
+            description={status === 'activa' 
+              ? 'La cuenta quedará inactiva y no podrá realizar operaciones.' 
+              : '¿Está seguro de activar esta cuenta?'}
+            onConfirm={toggleStatus}
+            okText="Sí"
+            cancelText="Cancelar"
+            placement="bottomLeft"
+          >
+            <Switch 
+              size="small" 
+              checked={status === 'activa'}
+              checkedChildren="ON"
+              unCheckedChildren="OFF"
+            />
+          </Popconfirm>
         </Space>
 
         <Space size={4}>
@@ -99,23 +122,14 @@ const ContextualHeader = () => {
         </Space>
 
         {/* Acciones críticas */}
-        <Space size="small">
-          <Button
-            size="small"
-            icon={status === 'activa' ? <LockOutlined /> : <UnlockOutlined />}
-            onClick={toggleStatus}
-          >
-            {status === 'activa' ? 'Desactivar' : 'Activar'}
-          </Button>
-          <Button
-            size="small"
-            type="primary"
-            icon={<FolderOutlined />}
-            onClick={() => navigate('/business-cases')}
-          >
-            Casos de Negocio
-          </Button>
-        </Space>
+        <Button
+          size="small"
+          type="primary"
+          icon={<FolderOutlined />}
+          onClick={() => navigate('/business-cases')}
+        >
+          Casos de Negocio
+        </Button>
       </div>
     </Card>
   );
