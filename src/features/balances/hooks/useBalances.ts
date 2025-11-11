@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getBalances } from '../api/balances.api';
 
-export const useBalances = () => {
+export const useBalances = (clienteId: string, productoId?: string) => {
   return useQuery({
-    queryKey: ['balances'],
-    queryFn: getBalances
+    queryKey: ['balances', clienteId, productoId],
+    queryFn: () => getBalances(clienteId, productoId || ''),
+    enabled: !!productoId, // Solo ejecutar si hay producto seleccionado
   });
 };
 

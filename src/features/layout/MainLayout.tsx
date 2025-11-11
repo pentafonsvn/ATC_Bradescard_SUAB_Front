@@ -1,7 +1,6 @@
 import { Layout, Tabs } from 'antd';
 import HeaderBar from './HeaderBar';
 import ContextualHeader from './ContextualHeader';
-import ProductHeader from '@/features/products/components/ProductHeader';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import {
   WalletOutlined,
@@ -59,13 +58,8 @@ const MainLayout = () => {
         <ContextualHeader />
       </div>
 
-      {/* Selector de producto (centrado) */}
-      <div style={{ position: 'sticky', top: 126, zIndex: 9 }}>
-        <ProductHeader />
-      </div>
-
       {/* Tabs de navegación */}
-      <div style={{ background: '#fff', position: 'sticky', top: 166, zIndex: 9 }}>
+      <div style={{ background: '#fff', position: 'sticky', top: 126, zIndex: 9 }}>
         <Tabs
           activeKey={activeKey}
           onChange={(key) => navigate(key)}
@@ -79,7 +73,7 @@ const MainLayout = () => {
       </div>
 
       {/* Contenido dinámico */}
-      <Content style={{ padding: '8px 16px', minHeight: 'calc(100vh - 240px)' }}>
+      <Content style={{ padding: '8px 16px', minHeight: 'calc(100vh - 200px)' }}>
         <Outlet />
       </Content>
     </Layout>

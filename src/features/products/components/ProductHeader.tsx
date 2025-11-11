@@ -20,15 +20,16 @@ const ProductHeader = () => {
       style={{
         background: '#fafafa',
         borderBottom: '1px solid #e8e8e8',
+        borderRadius: 4,
         padding: '8px 16px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        margin: '12px 0',
         minHeight: 40,
       }}
     >
       {isLoading ? (
-        <Spin size="small" />
+        <div style={{ textAlign: 'center' }}>
+          <Spin size="small" />
+        </div>
       ) : (
         <ProductSelector />
       )}

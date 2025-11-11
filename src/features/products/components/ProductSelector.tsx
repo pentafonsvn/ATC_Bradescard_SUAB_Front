@@ -1,4 +1,4 @@
-import { Radio, Select, Space, Tag } from 'antd';
+import { Segmented, Space } from 'antd';
 import {
   CreditCardOutlined,
   WalletOutlined,
@@ -30,28 +30,26 @@ const ProductSelector = () => {
 
   if (products.length === 0) return null;
 
+  const options = products.map((product) => ({
+    label: (
+      <Space size={4}>
+        <span style={{ color: productColors[product.tipo] }}>
+          {productIcons[product.tipo]}
+        </span>
+        <span>{product.nombre}</span>
+      </Space>
+    ),
+    value: product.id,
+  }));
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-      <span style={{ fontSize: 12, color: '#ffffffff', marginRight: 4 }}>Producto(s):</span>
-      <Radio.Group
-        value={selectedProduct?.id}
-        onChange={(e) => selectProduct(e.target.value)}
-        optionType="button"
-        buttonStyle="solid"
-        size="small"
-      >
-        {products.map((product) => (
-          <Radio.Button key={product.id} value={product.id}>
-            <Space size={4}>
-              <span style={{ color: productColors[product.tipo] }}>
-                {productIcons[product.tipo]}
-              </span>
-              <span>{product.nombre}</span>
-            </Space>
-          </Radio.Button>
-        ))}
-      </Radio.Group>
-    </div>
+    <Segmented
+      value={selectedProduct?.id}
+      onChange={(value) => selectProduct(value as string)}
+      options={options}
+      block
+      size="middle"
+    />
   );
 };
 
